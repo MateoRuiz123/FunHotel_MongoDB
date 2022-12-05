@@ -12,6 +12,9 @@ class Server {
         this.clientesPath = '/api/clientes';
         this.habitacionesPath = '/api/habitaciones';
         this.rolesPath = '/api/roles';
+        this.catalogosPath = '/api/catalogos';
+        this.ventasPath = '/api/ventas';
+        this.reservasPath = '/api/reservas';
         this.conectarDB()
         this.middlewares();
         this.routes();
@@ -29,6 +32,9 @@ class Server {
         this.app.use(this.clientesPath, require('../routes/clientes'));
         this.app.use(this.habitacionesPath, require('../routes/habitaciones'));
         this.app.use(this.rolesPath, require('../routes/roles'));
+        this.app.use(this.catalogosPath, require('../routes/catalogos') ); 
+        this.app.use(this.ventasPath, require('../routes/ventas') ); 
+        this.app.use(this.reservasPath, require('../routes/reservas') ); 
     }
     listen() {
         this.app.listen(this.port, () => {
