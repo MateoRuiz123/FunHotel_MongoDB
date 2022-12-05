@@ -7,7 +7,7 @@ const Servicio = require('../models/servicio')
 const serviciosPost = async (req, res) => {
     const errors = validationResult(req)
     if (!errors.isEmpty()) {
-        return res.status(400).json(erros)
+        return res.status(400).json(errors)
     }
 
     const {
