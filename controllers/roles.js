@@ -39,7 +39,7 @@ const rolesPUT = async (req, res) => {
     const { id } = req.params;
     const roles = await Role.findById(id);
     const { _id, ...resto } = req.body;
-    const roleActualizado = await Role.findOneAndUpdate(id, resto);
+    const roleActualizado = await Role.findByIdAndUpdate(id, resto);
     //Buscar donde el id corresponda para actualizar
     res.json({ msg: "Rol actualizado", roles });
 

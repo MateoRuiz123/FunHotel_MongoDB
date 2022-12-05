@@ -41,7 +41,7 @@ const habitacionesPut = async (req, res) => {
     const { id } = req.params;
     const habitaciones = await Habitacion.findById(id);
     const { _id, ...resto } = req.body;
-    const habitacionActualizado = await Habitacion.findOneAndUpdate(id, resto);
+    const habitacionActualizado = await Habitacion.findByIdAndUpdate(id, resto);
     //Buscar donde el id corresponda para actualizar
     res.json({ msg: "Habitacion actualizada", habitaciones });
 

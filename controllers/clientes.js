@@ -38,7 +38,7 @@ const clientesPUT = async (req, res) => {
     const { id } = req.params;
     const clientes = await Cliente.findById(id);
     const { _id, ...resto } = req.body;
-    const clienteActualizado = await Cliente.findOneAndUpdate(id, resto);
+    const clienteActualizado = await Cliente.findByIdAndUpdate(id, resto);
     //Buscar donde el id corresponda para actualizar
     res.json({ msg: "Cliente actualizado", clientes });
 };

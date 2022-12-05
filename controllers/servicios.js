@@ -58,9 +58,7 @@ const servicioGet = async (req, res) => {
 }
 
 const serviciosPut = async (req, res) => {
-    const {
-        id
-    } = req.params
+    const { id } = req.params
     const servicio = await Servicio.findById(id)
     const {
         _id,
