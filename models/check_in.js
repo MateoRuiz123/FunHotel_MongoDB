@@ -4,7 +4,7 @@ const { Schema, model } = require('mongoose');
 const Check_inSchema = Schema({
     reserva:{
         type:  Schema.Types.ObjectId,
-        ref: "Reserva",
+        ref: "reserva",
         required: true
     },
     fecha_in:{
@@ -17,7 +17,7 @@ const Check_inSchema = Schema({
     },
     cliente:{
         type:  Schema.Types.ObjectId,
-        ref: "Cliente",
+        ref: "cliente",
         required: true
     },
 }); 

@@ -18,12 +18,12 @@ const Check_outSchema = Schema({
     },
     ventas:{
         type:  Schema.Types.ObjectId,
-        ref: "Ventas",
+        ref: "venta",
         required: true
     },
     cliente:{
         type:  Schema.Types.ObjectId,
-        ref: "Cliente",
+        ref: "cliente",
         required: true
     },
     estado:{
