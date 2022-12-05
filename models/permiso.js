@@ -7,8 +7,8 @@ const PermisoSchema = Schema({
     },
     estado:{
         type: Boolean,
-        default: true,
-        required: true
+        default: true/* ,
+        required: true */
     },
     descripcion:{
         type: String,

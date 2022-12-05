@@ -1,5 +1,7 @@
 const express = require('express');
-const { validationResult } = require('express-validator');
+const {
+    validationResult
+} = require('express-validator');
 const Permisos = require('../models/permiso');
 
 const permisosPost = async (req, res) => {
@@ -8,9 +10,18 @@ const permisosPost = async (req, res) => {
         return res.status(400).json(errors);
     }
 
-    
+    const {
+        nombre,
+        descripcion
+    } = req.body;
+    const permiso = new Permisos({
+        nombre,
+        descripcion
+    })
 
-    const existeNombre = await Permisos.findOne({ nombre });
+    const existeNombre = await Permisos.findOne({
+        nombre
+    });
 
     if (existeNombre) {
         return res.status(400).json({
@@ -20,7 +31,9 @@ const permisosPost = async (req, res) => {
 
 
     permiso.save();
-    res.json({ msg: 'Permiso creado' })
+    res.json({
+        msg: 'Permiso creado'
+    })
 
 
 }
@@ -35,9 +48,16 @@ const permisosGet = async (req, res) => {
 }
 const permisoGet = async (req, res) => {
 
-    const { id } = req.params;
+    const {
+        id
+    } = req.params;
     const permiso = await Permisos.findById(id);
-    !permiso ? res.json({ msg: 'El permiso no existe' }) : res.json({ msg: "Información del permiso", permiso });
+    !permiso ? res.json({
+        msg: 'El permiso no existe'
+    }) : res.json({
+        msg: "Información del permiso",
+        permiso
+    });
     /* if (!usuario) {
         return res.json({
             msg: 'El usuario no existe'
@@ -53,14 +73,19 @@ const permisoGet = async (req, res) => {
 }
 const permisosPut = async (req, res) => {
 
-    const { id } = req.params;
+    const {
+        id
+    } = req.params;
     const permiso = await Permisos.findById(id);
-    const { _id,...resto } = req.body;
+    const {
+        _id,
+        ...resto
+    } = req.body;
     if (!permiso) {
-            return res.json({
-                msg: 'El permiso no existe'
-            });
-        }
+        return res.json({
+            msg: 'El permiso no existe'
+        });
+    }
     const permisoactualizado = await Permisos.findByIdAndUpdate(id, resto);
 
     res.json({
@@ -73,8 +98,12 @@ const permisosPut = async (req, res) => {
 }
 
 const permisosDelete = async (req, res) => {
-    const { id } = req.params;
-    const permiso = await Permisos.findByIdAndUpdate(id, { estado: false });
+    const {
+        id
+    } = req.params;
+    const permiso = await Permisos.findByIdAndUpdate(id, {
+        estado: false
+    });
     if (!permiso) {
         return res.json({
             msg: 'El permiso no existe'
@@ -91,5 +120,3 @@ module.exports = {
     permisosPut,
     permisosDelete
 }
-
-

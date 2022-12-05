@@ -2,7 +2,7 @@ const {Schema, model } = require('mongoose');
 
 const SalaSchema = Schema({
     ficha: {
-        type: String,
+        type: Number,
         required: [true, 'La ficha es obligatoria'],
         
     },
@@ -28,7 +28,7 @@ const SalaSchema = Schema({
     usuario:{
         type: Schema.Types.ObjectId,
         ref: 'usuario',
-        required: true
+        required: [true, "El usuario es querido"]
     }
 });
 

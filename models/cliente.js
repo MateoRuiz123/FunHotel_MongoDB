@@ -13,7 +13,7 @@ const ClienteSchema = Schema({
     },
     edad: {
         type: Number,
-        default: true
+        default: 00
     },
     correo: {
         type: String,
@@ -21,13 +21,18 @@ const ClienteSchema = Schema({
         unique: true
     },
     tipo_documento: {
-        type: Number,
-        default: true
+        type: String,
+        required:"El tipo de documento es requerido",
+        enum:["CC","CE","TI"]
     },
     celular: {
         type: Number,
-        default: true
+        default: 000
     },
+    estado:{
+        type:Boolean,
+        default:true
+    }
 
 });
 

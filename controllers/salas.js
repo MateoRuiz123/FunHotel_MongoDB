@@ -1,5 +1,7 @@
 const express = require('express');
-const { validationResult } = require('express-validator');
+const {
+    validationResult
+} = require('express-validator');
 const Sala = require('../models/sala');
 
 const salasPost = async (req, res) => {
@@ -8,10 +10,24 @@ const salasPost = async (req, res) => {
         return res.status(400).json(errors);
     }
 
-    const { nombre, usuario} = req.body;
-    const sala = new Sala({ nombre, usuario});
+    const {
+        ficha,
+        nombre,
+        temporada,
+        dificultad,
+        usuario
+    } = req.body;
+    const sala = new Sala({
+        ficha,
+        nombre,
+        temporada,
+        dificultad,
+        usuario
+    });
 
-    const existeNombre = await Sala.findOne({ nombre });
+    const existeNombre = await Sala.findOne({
+        nombre
+    });
 
     if (existeNombre) {
         return res.status(400).json({
@@ -21,7 +37,9 @@ const salasPost = async (req, res) => {
 
 
     sala.save();
-    res.json({ msg: 'Sala creada' })
+    res.json({
+        msg: 'Sala creada'
+    })
 
 
 }
@@ -36,9 +54,16 @@ const salasGet = async (req, res) => {
 }
 const salaGet = async (req, res) => {
 
-    const { id } = req.params;
+    const {
+        id
+    } = req.params;
     const sala = await Sala.findById(id);
-    !sala ? res.json({ msg: 'La sala no existe' }) : res.json({ msg: "Información de la sala", sala });
+    !sala ? res.json({
+        msg: 'La sala no existe'
+    }) : res.json({
+        msg: "Información de la sala",
+        sala
+    });
     /* if (!usuario) {
         return res.json({
             msg: 'El usuario no existe'
@@ -54,14 +79,19 @@ const salaGet = async (req, res) => {
 }
 const salasPut = async (req, res) => {
 
-    const { id } = req.params;
+    const {
+        id
+    } = req.params;
     const sala = await Sala.findById(id);
-    const { _id,...resto } = req.body;
+    const {
+        _id,
+        ...resto
+    } = req.body;
     if (!sala) {
-            return res.json({
-                msg: 'La sala no existe'
-            });
-        }
+        return res.json({
+            msg: 'La sala no existe'
+        });
+    }
     const salaactualizada = await Sala.findByIdAndUpdate(id, resto);
 
     res.json({
@@ -74,8 +104,12 @@ const salasPut = async (req, res) => {
 }
 
 const salasDelete = async (req, res) => {
-    const { id } = req.params;
-    const sala = await Sala.findByIdAndUpdate(id, { estado: false });
+    const {
+        id
+    } = req.params;
+    const sala = await Sala.findByIdAndUpdate(id, {
+        estado: false
+    });
     if (!sala) {
         return res.json({
             msg: 'La sala no existe'
@@ -92,5 +126,3 @@ module.exports = {
     salasPut,
     salasDelete
 }
-
-

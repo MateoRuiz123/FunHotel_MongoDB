@@ -1,4 +1,7 @@
-const {Schema, model } = require('mongoose');
+const {
+    Schema,
+    model
+} = require('mongoose');
 
 const UsuarioSchema = Schema({
     nombre: {
@@ -26,7 +29,7 @@ const UsuarioSchema = Schema({
         type: Number,
         required: [true, 'El documento es obligatorio'],
     },
-    estado:{
+    estado: {
         type: Boolean,
         default: true
     },

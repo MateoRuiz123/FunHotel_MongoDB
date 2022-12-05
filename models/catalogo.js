@@ -1,18 +1,21 @@
-const{Schema,model}=require('mongoose');
+const {
+    Schema,
+    model
+} = require('mongoose');
 
-const CatalogoSchema=Schema({
-    nombre:{
-        type:String,
-        required:[true,"El campo nombre es requerido"],
-        unique:true
+const CatalogoSchema = Schema({
+    nombre: {
+        type: String,
+        required: [true, "El campo nombre es requerido"],
+        unique: true
     },
-    descripcion:{
-        type:String
+    descripcion: {
+        type: String
     },
-    estado:{
-        type:Boolean,
-        default:true
+    estado: {
+        type: Boolean,
+        default: true
     }
 
 });
-module.exports=model('Catalogo', CatalogoSchema);
+module.exports = model('Catalogo', CatalogoSchema);

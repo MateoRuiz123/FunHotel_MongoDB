@@ -1,21 +1,38 @@
 const express = require('express');
 const bcryptjs = require('bcryptjs');
-const { validationResult } = require('express-validator');
+const {
+    validationResult
+} = require('express-validator');
 const Usuario = require('../models/usuario');
 
-const usuarioPost = async (req, res) => {
+const usuariosPost = async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(400).json(errors);
     }
 
+    const {
+        nombre,
+        apellido,
+        correo,
+        password,
+        ficha,
+        documento,
+        rol
+    } = req.body;
+    const usuario = new Usuario({
+        nombre,
+        apellido,
+        correo,
+        password,
+        ficha,
+        documento,
+        rol
+    });
 
-
-
-    const { nombre, correo, password, rol } = req.body;
-    const usuario = new Usuario({ nombre, correo, password, rol });
-
-    const existeEmail = await Usuario.findOne({ correo });
+    const existeEmail = await Usuario.findOne({
+        correo
+    });
 
     if (existeEmail) {
         return res.status(400).json({
@@ -27,7 +44,9 @@ const usuarioPost = async (req, res) => {
     usuario.password = bcryptjs.hashSync(password, salt);
 
     usuario.save();
-    res.json({ msg: 'usuario creado' })
+    res.json({
+        msg: 'usuario creado'
+    })
 
 
 }
@@ -42,9 +61,16 @@ const usuariosGet = async (req, res) => {
 }
 const usuarioGet = async (req, res) => {
 
-    const { id } = req.params;
+    const {
+        id
+    } = req.params;
     const usuario = await Usuario.findById(id);
-    !usuario ? res.json({ msg: 'El usuario no existe' }) : res.json({ msg: "Información del usuario", usuario });
+    !usuario ? res.json({
+        msg: 'El usuario no existe'
+    }) : res.json({
+        msg: "Información del usuario",
+        usuario
+    });
     /* if (!usuario) {
         return res.json({
             msg: 'El usuario no existe'
@@ -60,14 +86,19 @@ const usuarioGet = async (req, res) => {
 }
 const usuariosPut = async (req, res) => {
 
-    const { id } = req.params;
+    const {
+        id
+    } = req.params;
     const usuario = await Usuario.findById(id);
-    const { _id, google,correo, ...resto } = req.body;
+    const {
+        _id,
+        ...resto
+    } = req.body;
     if (!usuario) {
-            return res.json({
-                msg: 'El usuario no existe'
-            });
-        }
+        return res.json({
+            msg: 'El usuario no existe'
+        });
+    }
     if (resto.password) {
         const salt = bcryptjs.genSaltSync();
         usuario.resto.password = bcryptjs.hashSync(resto.password, salt);
@@ -76,7 +107,6 @@ const usuariosPut = async (req, res) => {
 
     res.json({
         msg: "Usuario actualizado",
-
         usuarioactualizado
     });
 
@@ -84,9 +114,14 @@ const usuariosPut = async (req, res) => {
 }
 
 const usuariosDelete = async (req, res) => {
-    const { id } = req.params;/* 
-    const usuarioeli = await Usuario.findByIdAndDelete(id); */
-    const usuarioeli = await Usuario.findByIdAndUpdate(id, { estado: false });
+    const {
+        id
+    } = req.params;
+    /* 
+        const usuarioeli = await Usuario.findByIdAndDelete(id); */
+    const usuarioeli = await Usuario.findByIdAndUpdate(id, {
+        estado: false
+    });
     if (!usuarioeli) {
         return res.json({
             msg: 'El usuario no existe'
@@ -96,17 +131,15 @@ const usuariosDelete = async (req, res) => {
         msg: "Estado del usuario actualizado"
     });
 }
-    
+
 
 
 
 
 module.exports = {
-    usuarioPost,
+    usuariosPost,
     usuariosGet,
     usuarioGet,
     usuariosPut,
     usuariosDelete
 }
-
-
