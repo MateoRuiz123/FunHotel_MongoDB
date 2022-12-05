@@ -18,6 +18,9 @@ class Server {
         this.check_insPath = '/api/check_ins';
         this.check_outsPath = '/api/check_outs';
         this.metodo_pagosPath = '/api/metodo_pagos';
+        this.usuariosPath = '/api/usuarios';
+        this.salasPath = '/api/salas';
+        this.permisosPath = '/api/permisos';
         this.conectarDB()
         this.middlewares();
         this.routes();
@@ -41,6 +44,9 @@ class Server {
         this.app.use(this.check_insPath, require('../routes/check_ins') ); 
         this.app.use(this.check_outsPath, require('../routes/check_outs') ); 
         this.app.use(this.metodo_pagosPath, require('../routes/metodo_pagos') ); 
+        this.app.use(this.usuariosPath, require('../routes/usuarios'));
+        this.app.use(this.salasPath, require('../routes/salas'));
+        this.app.use(this.permisosPath, require('../routes/permisos'));
     }
     listen() {
         this.app.listen(this.port, () => {
