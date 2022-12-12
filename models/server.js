@@ -22,6 +22,7 @@ class Server {
         this.salasPath = '/api/salas';
         this.permisosPath = '/api/permisos';
         this.pedidosPath = '/api/pedidos';
+        this.authPath = '/api/auth';
         this.conectarDB()
         this.middlewares();
         this.routes();
@@ -49,6 +50,7 @@ class Server {
         this.app.use(this.salasPath, require('../routes/salas'));
         this.app.use(this.permisosPath, require('../routes/permisos'));
         this.app.use(this.pedidosPath, require('../routes/pedidos'));
+        this.app.use(this.authPath, require('../routes/auth'));
     }
     listen() {
         this.app.listen(this.port, () => {

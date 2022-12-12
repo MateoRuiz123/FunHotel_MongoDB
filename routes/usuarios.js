@@ -11,6 +11,9 @@ const {
     usuariosPut,
     usuariosDelete
 } = require('../controllers/usuarios');
+const {
+    validarJWT
+} = require('../middlewares/validar_jwt');
 
 const router = Router();
 
@@ -24,7 +27,7 @@ router.post('/', [
     check('rol', 'El rol no es válido').isIn(['ADMIN_ROLE', 'USER_ROLE']),
 ], usuariosPost);
 
-router.get('/', usuariosGet)
+router.get('/', [validarJWT], usuariosGet)
 router.get('/:id', usuarioGet)
 router.put('/:id', usuariosPut)
 router.delete('/:id', usuariosDelete)
