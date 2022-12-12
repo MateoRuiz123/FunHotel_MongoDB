@@ -1,9 +1,9 @@
 const express = require('express');
-const bcrypt = require('bcryptjs');
+const bcryptjs = require('bcryptjs');
 const {
     validationResult
 } = require('express-validator');
-const Usuario = require('../models/Usuario');
+const Usuario = require('../models/usuario');
 const {
     generarJWT
 } = require('../helpers/jwt');
@@ -35,7 +35,7 @@ const login = async (req, res) => {
             })
         }
 
-        const validPassword = bcrypt.compareSync(password, usuario.password);
+        const validPassword = bcryptjs.compareSync(password, usuario.password);
 
         if (!validPassword) {
             return res.status(400).json({
@@ -61,10 +61,14 @@ const login = async (req, res) => {
 
         });
     } catch (error) {
-        console.log(error);
+        //console.log(error);
         res.status(500).json({
             ok: false,
             msg: 'Error inesperado'
         })
     }
+}
+
+module.exports = {
+    login
 }
