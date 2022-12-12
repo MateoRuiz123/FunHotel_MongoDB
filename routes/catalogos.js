@@ -15,12 +15,12 @@ router.post('/', [
 
 router.put('/:id', [
     check('nombre', 'El nombre es obligatorio').not().isEmpty(),
-], catalogoPut);
+], [validarJWT], catalogoPut);
 
-router.get("/",catalogosGet);
-router.get("/:id",catalogoGet);
-router.put("/:id",catalogoPut);
-router.delete("/:id",catalogoDelete);
+router.get("/", [validarJWT],catalogosGet);
+router.get("/:id", [validarJWT],catalogoGet);
+router.put("/:id", [validarJWT],catalogoPut);
+router.delete("/:id", [validarJWT],catalogoDelete);
 
 
 

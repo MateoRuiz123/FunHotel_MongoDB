@@ -13,15 +13,15 @@ router.post('/', [
 
 ], habitacionesPost);
 
-router.get('/', habitacionesGet);
-router.get('/:id', habitacionGet);
+router.get('/', [validarJWT], habitacionesGet);
+router.get('/:id', [validarJWT], habitacionGet);
 router.put('/:id', [
     check('numero_camas', 'El numero de camas es obligatorio').not().isEmpty(),
     check('numero_toallas', 'El numero de toallas es obligatorio').not().isEmpty(),
     check('numero_gaseosas', 'El numero de gaseosas es obligatorio').not().isEmpty(),
     check('numero_papas', 'El numero de papas es obligatorio').not().isEmpty(),
-], habitacionesPut);
-router.delete('/:id', habitacionesDelete);
+], [validarJWT], habitacionesPut);
+router.delete('/:id', [validarJWT], habitacionesDelete);
 
 
 module.exports = router;

@@ -21,12 +21,11 @@ router.put('/:id', [
     check('id_habitacion', 'El id_habitacion es obligatorio').not().isEmpty(),
     check('id_clientes', 'El id_clientes es obligatorio').not().isEmpty(),
     check('id_servicios', 'El id_servicios es obligatorio').not().isEmpty(),
-], reservaPut);
+], [validarJWT], reservaPut);
 
-router.get("/",reservasGet);
-router.get("/:id",reservaGet);
-router.put("/:id",reservaPut);
-router.delete("/:id",reservaDelete);
+router.get("/", [validarJWT],reservasGet);
+router.get("/:id", [validarJWT],reservaGet);
+router.delete("/:id", [validarJWT],reservaDelete);
 
 
 

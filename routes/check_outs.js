@@ -17,10 +17,10 @@ router.post('/', [
 
 ], check_outsPost);
 
-router.get('/', check_outsGet);
-router.get('/:id', check_outGet);
-router.put('/:id', check_outsPut);
-router.delete('/:id', check_outsDelete);
+router.get('/', [validarJWT], check_outsGet);
+router.get('/:id', [validarJWT], check_outGet);
+router.put('/:id', [validarJWT], check_outsPut);
+router.delete('/:id', [validarJWT], check_outsDelete);
 
 
 module.exports = router;

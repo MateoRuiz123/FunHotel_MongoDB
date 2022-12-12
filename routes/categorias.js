@@ -13,12 +13,12 @@ router.post('/', [
     check('nombre', 'El nombre es obligatorio').not().isEmpty(),
     check('descripcion', 'La descripción es obligatoria').not().isEmpty()
 ], categoriasPost)
-router.get('/', categoriasGet)
-router.get('/:id', categoriaGet)
-router.put('/:id', [
+router.get('/', [validarJWT], categoriasGet)
+router.get('/:id', [validarJWT], categoriaGet)
+router.put('/:id', [validarJWT], [
     check('nombre', 'El nombre es obligatorio').not().isEmpty(),
     check('descripcion', 'La descripción es obligatoria').not().isEmpty()
 ], categoriasPut)
-router.delete('/:id', categoriasDelete)
+router.delete('/:id', [validarJWT], categoriasDelete)
 
 module.exports = router

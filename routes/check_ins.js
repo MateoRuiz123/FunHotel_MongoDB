@@ -14,10 +14,10 @@ router.post('/', [
 
 ], check_insPost);
 
-router.get('/', check_insGet);
-router.get('/:id', check_inGet);
-router.put('/:id', check_insPut);
-router.delete('/:id', check_insDelete);
+router.get('/', [validarJWT], check_insGet);
+router.get('/:id', [validarJWT], check_inGet);
+router.put('/:id', [validarJWT], check_insPut);
+router.delete('/:id', [validarJWT], check_insDelete);
 
 
 module.exports = router;

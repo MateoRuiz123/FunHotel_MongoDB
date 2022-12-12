@@ -28,8 +28,8 @@ router.post('/', [
 ], usuariosPost);
 
 router.get('/', [validarJWT], usuariosGet)
-router.get('/:id', usuarioGet)
-router.put('/:id', usuariosPut)
-router.delete('/:id', usuariosDelete)
+router.get('/:id', [validarJWT], usuarioGet)
+router.put('/:id', [validarJWT], usuariosPut)
+router.delete('/:id', [validarJWT], usuariosDelete)
 
 module.exports = router;

@@ -19,14 +19,14 @@ router.post('/', [
     check('producto', 'El producto es obligatorio').not().isEmpty(),
     check('cantidad', 'La cantidad es obligatorio').not().isEmpty()
 ], pedidosPost)
-router.get('/', pedidosGet)
-router.get('/:id', pedidoGet)
+router.get('/', [validarJWT], pedidosGet)
+router.get('/:id', [validarJWT], pedidoGet)
 router.put('/:id', [
     check('reserva', 'La reserva es obligatorio').not().isEmpty(),
     check('cliente', 'El cliente es obligatorio').not().isEmpty(),
     check('producto', 'El producto es obligatorio').not().isEmpty(),
     check('cantidad', 'La cantidad es obligatorio').not().isEmpty()
-], pedidosPut)
-router.delete('/:id', pedidosDelete)
+], [validarJWT], pedidosPut)
+router.delete('/:id', [validarJWT], pedidosDelete)
 
 module.exports = router

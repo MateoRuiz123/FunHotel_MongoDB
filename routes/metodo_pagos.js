@@ -11,10 +11,10 @@ router.post('/', [
 
 ], metodo_pagosPost);
 
-router.get('/', metodo_pagosGet);
-router.get('/:id', metodo_pagoGet);
-router.put('/:id', metodo_pagosPut);
-router.delete('/:id', metodo_pagosDelete);
+router.get('/', [validarJWT], metodo_pagosGet);
+router.get('/:id', [validarJWT], metodo_pagoGet);
+router.put('/:id', [validarJWT], metodo_pagosPut);
+router.delete('/:id', [validarJWT], metodo_pagosDelete);
 
 
 module.exports = router;

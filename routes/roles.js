@@ -10,13 +10,13 @@ router.post('/', [
 
 ], rolesPost);
 
-router.get('/', rolesGet);
-router.get('/:id', roleGet);
+router.get('/', [validarJWT], rolesGet);
+router.get('/:id', [validarJWT], roleGet);
 router.put('/:id', [
     check('nombre', 'el nombre es obligatorio').not().isEmpty(),
 
-], rolesPUT);
-router.delete('/:id', rolesDelete);
+], [validarJWT], rolesPUT);
+router.delete('/:id', [validarJWT], rolesDelete);
 
 
 module.exports = router;

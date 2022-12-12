@@ -14,10 +14,10 @@ router.post('/', [
     check('descripcion', 'La descripcion es obligatoria').not().isEmpty()
 ], permisosPost);
 
-router.get('/', permisosGet)
-router.get('/:id', permisoGet)
-router.put('/:id', permisosPut)
-router.delete('/:id', permisosDelete)
+router.get('/', [validarJWT], permisosGet)
+router.get('/:id', [validarJWT], permisoGet)
+router.put('/:id', [validarJWT], permisosPut)
+router.delete('/:id', [validarJWT], permisosDelete)
 
 module.exports = router;
 

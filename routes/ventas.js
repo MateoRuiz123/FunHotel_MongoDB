@@ -19,10 +19,10 @@ router.put('/:id', [
     check('fecha_salida', 'La fecha de salida es obligatoria').not().isEmpty(),
 ], ventaPut);
 
-router.get("/",ventasGet);
-router.get("/:id",ventaGet);
-router.put("/:id",ventaPut);
-router.delete("/:id",ventaDelete);
+router.get("/", [validarJWT],ventasGet);
+router.get("/:id", [validarJWT],ventaGet);
+router.put("/:id", [validarJWT],ventaPut);
+router.delete("/:id", [validarJWT],ventaDelete);
 
 
 

@@ -16,10 +16,10 @@ router.post('/', [
     check('usuario', 'El usuario es obligatorio').not().isEmpty()
 ], salasPost);
 
-router.get('/', salasGet)
-router.get('/:id',salaGet)
-router.put('/:id', salasPut)
-router.delete('/:id', salasDelete)
+router.get('/', [validarJWT], salasGet)
+router.get('/:id', [validarJWT],salaGet)
+router.put('/:id', [validarJWT], salasPut)
+router.delete('/:id', [validarJWT], salasDelete)
 
 module.exports = router;
 

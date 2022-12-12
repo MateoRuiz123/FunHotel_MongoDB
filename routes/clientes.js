@@ -12,16 +12,16 @@ router.post('/', [
 
 ], clientesPost);
 
-router.get('/', clientesGet);
-router.get('/:id', clienteGet);
+router.get('/', [validarJWT], clientesGet);
+router.get('/:id', [validarJWT], clienteGet);
 router.put('/:id', [
     check('nombre', 'el nombre es obligatorio').not().isEmpty(),
     check('apellido', 'El apellido es obligatorio').not().isEmpty(),
     check('correo', 'El correo no es válido').isEmail(),
 
 
-], clientesPUT);
-router.delete('/:id', clientesDelete);
+], [validarJWT], clientesPUT);
+router.delete('/:id', [validarJWT], clientesDelete);
 
 
 module.exports = router;
