@@ -2,7 +2,9 @@ const { Router } = require('express');
 const { check } = require('express-validator');
 
 const { rolesPost, rolesGet, roleGet, rolesPUT, rolesDelete } = require('../controllers/roles');
-
+const {
+    validarJWT
+} = require('../middlewares/validar_jwt');
 const router = Router();
 
 router.post('/', [

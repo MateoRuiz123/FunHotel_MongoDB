@@ -5,7 +5,9 @@ const {salasGet} = require('../controllers/salas');
 const {salaGet} = require('../controllers/salas');
 const {salasPut} = require('../controllers/salas');
 const {salasDelete} = require('../controllers/salas');
-
+const {
+    validarJWT
+} = require('../middlewares/validar_jwt');
 const router = Router();
 
 router.post('/', [

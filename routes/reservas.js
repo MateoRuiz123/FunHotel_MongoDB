@@ -1,7 +1,9 @@
 const{Router} =require('express');
 const{check} =require('express-validator');
 
-
+const {
+    validarJWT
+} = require('../middlewares/validar_jwt');
 
 const {reservasPost, reservasGet,reservaGet,reservaPut,reservaDelete} = require('../controllers/reservas');
 

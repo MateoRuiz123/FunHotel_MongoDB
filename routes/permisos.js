@@ -5,7 +5,9 @@ const {permisosGet} = require('../controllers/permisos');
 const {permisoGet} = require('../controllers/permisos');
 const {permisosPut} = require('../controllers/permisos');
 const {permisosDelete} = require('../controllers/permisos');
-
+const {
+    validarJWT
+} = require('../middlewares/validar_jwt');
 const router = Router();
 
 router.post('/', [

@@ -2,7 +2,9 @@ const {Router} = require('express');
 const {check} = require('express-validator');
 
 const {check_insPost, check_insGet, check_inGet, check_insPut, check_insDelete} = require('../controllers/check_ins');
-
+const {
+    validarJWT
+} = require('../middlewares/validar_jwt');
 const router = Router();
 
 router.post('/', [

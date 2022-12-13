@@ -8,6 +8,9 @@ const {
     categoriasPost,categoriasPut,categoriasGet,categoriaGet,categoriasDelete
 } = require('../controllers/categorias')
 const router = Router()
+const {
+    validarJWT
+} = require('../middlewares/validar_jwt');
 
 router.post('/', [
     check('nombre', 'El nombre es obligatorio').not().isEmpty(),

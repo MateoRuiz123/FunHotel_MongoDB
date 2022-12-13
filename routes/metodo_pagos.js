@@ -2,7 +2,9 @@ const {Router} = require('express');
 const {check} = require('express-validator');
 
 const {metodo_pagosPost, metodo_pagosGet, metodo_pagoGet, metodo_pagosPut, metodo_pagosDelete} = require('../controllers/metodo_pagos');
-
+const {
+    validarJWT
+} = require('../middlewares/validar_jwt');
 const router = Router();
 
 router.post('/', [

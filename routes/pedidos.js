@@ -12,7 +12,9 @@ const {
     pedidosDelete
 } = require('../controllers/pedidos')
 const router = Router()
-
+const {
+    validarJWT
+} = require('../middlewares/validar_jwt');
 router.post('/', [
     check('reserva', 'La reserva es obligatorio').not().isEmpty(),
     check('cliente', 'El cliente es obligatorio').not().isEmpty(),

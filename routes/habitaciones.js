@@ -2,7 +2,9 @@ const { Router } = require('express');
 const { check } = require('express-validator');
 
 const { habitacionesPost, habitacionesGet, habitacionGet, habitacionesPut, habitacionesDelete } = require('../controllers/habitaciones');
-
+const {
+    validarJWT
+} = require('../middlewares/validar_jwt');
 const router = Router();
 
 router.post('/', [

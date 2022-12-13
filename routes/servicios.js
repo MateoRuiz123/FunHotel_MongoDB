@@ -12,7 +12,9 @@ const {
     serviciosDelete
 } = require('../controllers/servicios')
 const router = Router()
-
+const {
+    validarJWT
+} = require('../middlewares/validar_jwt');
 router.post('/', [
     check('nombre', 'El nombre es obligatorio').not().isEmpty(),
     check('descripcion', 'La descripción es obligatoria').not().isEmpty()

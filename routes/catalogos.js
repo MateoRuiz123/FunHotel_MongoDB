@@ -1,6 +1,8 @@
 const{Router} =require('express');
 const{check} =require('express-validator');
-
+const {
+    validarJWT
+} = require('../middlewares/validar_jwt');
 
 
 const {catalogosPost, catalogosGet,catalogoGet,catalogoPut,catalogoDelete} = require('../controllers/catalogos');
