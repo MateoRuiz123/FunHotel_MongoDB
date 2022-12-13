@@ -3,6 +3,7 @@ const{check} =require('express-validator');
 const {
     validarJWT
 } = require('../middlewares/validar_jwt');
+const {esAdminRole, esUserRole} = require('../middlewares/validar_roles');
 
 
 const {catalogosPost, catalogosGet,catalogoGet,catalogoPut,catalogoDelete} = require('../controllers/catalogos');

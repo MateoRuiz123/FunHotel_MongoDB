@@ -14,6 +14,10 @@ const {
 const {
     validarJWT
 } = require('../middlewares/validar_jwt');
+const {
+    esAdminRole,
+    esUserRole
+} = require('../middlewares/validar_roles');
 
 const router = Router();
 
@@ -27,9 +31,9 @@ router.post('/', [
     check('rol', 'El rol no es válido').isIn(['ADMIN_ROLE', 'USER_ROLE']),
 ], usuariosPost);
 
-router.get('/', [validarJWT], usuariosGet)
-router.get('/:id', [validarJWT], usuarioGet)
-router.put('/:id', [validarJWT], usuariosPut)
-router.delete('/:id', [validarJWT], usuariosDelete)
+router.get('/', [validarJWT, esAdminRole], usuariosGet)
+router.get('/:id', [validarJWT, esAdminRole], usuarioGet)
+router.put('/:id', [validarJWT, esAdminRole], usuariosPut)
+router.delete('/:id', [validarJWT, esAdminRole], usuariosDelete)
 
 module.exports = router;

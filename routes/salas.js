@@ -8,6 +8,10 @@ const {salasDelete} = require('../controllers/salas');
 const {
     validarJWT
 } = require('../middlewares/validar_jwt');
+const {
+    esAdminRole,
+    esUserRole
+} = require('../middlewares/validar_roles');
 const router = Router();
 
 router.post('/', [
@@ -18,10 +22,10 @@ router.post('/', [
     check('usuario', 'El usuario es obligatorio').not().isEmpty()
 ], salasPost);
 
-router.get('/', [validarJWT], salasGet)
-router.get('/:id', [validarJWT],salaGet)
-router.put('/:id', [validarJWT], salasPut)
-router.delete('/:id', [validarJWT], salasDelete)
+router.get('/', [validarJWT, esAdminRole], salasGet)
+router.get('/:id', [validarJWT, esAdminRole],salaGet)
+router.put('/:id', [validarJWT, esAdminRole], salasPut)
+router.delete('/:id', [validarJWT, esAdminRole], salasDelete)
 
 module.exports = router;
 
